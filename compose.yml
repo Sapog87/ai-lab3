@@ -36,10 +36,11 @@ services:
     build: .
     container_name: app
     environment:
-      SPRING_PROFILES_ACTIVE: docker
-      DB_URL: jdbc:postgresql://pg:5432/ai
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: ai
       DB_USER: ai
-      DB_PASS: ai
+      DB_PASSWORD: ai
       OLLAMA_BASE_URL: http://ollama:11434
       OLLAMA_EMBED_MODEL: nomic-embed-text
       SIM_THRESHOLD: "0.75"

@@ -20,7 +20,7 @@ langchain4j:
     port: ${DB_PORT:5432}
     database: ${DB_NAME:ai}
     user: ${DB_USER:ai}
-    password: ${DB_USER:ai}
+    password: ${DB_PASSWORD:ai}
     table: game_vectors
   ollama:
     embedding-model:

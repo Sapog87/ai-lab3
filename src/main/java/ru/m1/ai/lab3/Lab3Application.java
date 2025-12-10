@@ -30,32 +30,32 @@ public class Lab3Application {
         SpringApplication.run(Lab3Application.class, args);
     }
 
-    @SneakyThrows
-    @EventListener(ApplicationStartedEvent.class)
-    public void contextStarted(ApplicationStartedEvent event) {
-        try (CSVReader reader = new CSVReader(new InputStreamReader(Lab3Application.class.getResourceAsStream("/dataset/games.csv")))) {
-
-            List<String[]> allData = reader.readAll();
-
-            allData.remove(0);
-
-            List<TextSegment> segments = allData.stream()
-                    .map(x -> String.join(",", x))
-                    .distinct()
-                    .map(x -> StringUtils.substring(x, 0, 1000))
-                    .map(TextSegment::from)
-                    .toList();
-
-            log.info("embeddingModel: {}", segments.size());
-
-            Response<List<Embedding>> response = embeddingModel.embedAll(segments);
-
-            log.info("embeddingStore");
-
-            embeddingStore.addAll(response.content(), segments);
-
-            log.info("done");
-        }
-    }
+//    @SneakyThrows
+//    @EventListener(ApplicationStartedEvent.class)
+//    public void contextStarted(ApplicationStartedEvent event) {
+//        try (CSVReader reader = new CSVReader(new InputStreamReader(Lab3Application.class.getResourceAsStream("/dataset/games.csv")))) {
+//
+//            List<String[]> allData = reader.readAll();
+//
+//            allData.remove(0);
+//
+//            List<TextSegment> segments = allData.stream()
+//                    .map(x -> String.join(",", x))
+//                    .distinct()
+//                    .map(x -> StringUtils.substring(x, 0, 1000))
+//                    .map(TextSegment::from)
+//                    .toList();
+//
+//            log.info("embeddingModel: {}", segments.size());
+//
+//            Response<List<Embedding>> response = embeddingModel.embedAll(segments);
+//
+//            log.info("embeddingStore");
+//
+//            embeddingStore.addAll(response.content(), segments);
+//
+//            log.info("done");
+//        }
+//    }
 
 }
